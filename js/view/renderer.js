@@ -36,6 +36,7 @@ const Renderer = function(){
     }
     const renderCompanies = function(companies){
         clearResults()
+        hideLoading()
         companies.forEach(c => {
             const companyName = c.name
             const companySymbol = c.symbol
