@@ -3,7 +3,7 @@ import {
     searchMockCompanies,
     getMockCompanyProfile,
     getMockCompanyHistory
-} from "../mocks/stock-mocks.js"
+} from "./mock-service.js"
 
 const StockService = function () {
    
@@ -58,7 +58,7 @@ const StockService = function () {
 
             return {
                 result: true,
-                data: data
+                data: Array.isArray(data) ? data[0] : data
             }
         }
         catch(error){
