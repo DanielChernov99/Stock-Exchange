@@ -9,9 +9,7 @@ const Renderer = function(){
 
 
     const getInputValue = () => {
-        let value = searchInput.value.trim()
-        if (value ==="") return
-        return value
+        return searchInput.value.trim()
     }
 
     const showLoading = function () {
@@ -26,7 +24,7 @@ const Renderer = function(){
         errorElement.classList.remove("hidden")
     }
 
-    const clearError = function(){
+    const clearErrors = function(){
         errorElement.textContent = ""
         errorElement.classList.add("hidden")
 
@@ -36,7 +34,7 @@ const Renderer = function(){
     }
     const renderCompanies = function(companies){
         clearResults()
-        hideLoading()
+        
         companies.forEach(c => {
             const companyName = c.name
             const companySymbol = c.symbol
@@ -46,7 +44,7 @@ const Renderer = function(){
 
             const companyLink = document.createElement("a")
             companyLink.classList.add("company-link")
-            companyLink.href = `../company.html?symbol=${companySymbol}`
+            companyLink.href = `company.html?symbol=${companySymbol}`
 
             const nameSpan = document.createElement("span")
             nameSpan.classList.add("company-name")
@@ -70,7 +68,7 @@ const Renderer = function(){
         showLoading,
         hideLoading,
         showError,
-        clearError,
+        clearErrors,
         clearResults,
         renderCompanies,
         onSearch
