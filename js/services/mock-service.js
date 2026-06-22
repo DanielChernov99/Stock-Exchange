@@ -16,8 +16,13 @@ const mockProfiles = {
         symbol: "AAPL",
         companyName: "Apple Inc.",
         price: 195.64,
-        changes: 2.31,
-        changesPercentage: 1.19,
+        changePercentage: 1.19,
+        currency: "USD",
+        exchangeFullName: "NASDAQ Global Select",
+        exchange: "NASDAQ",
+        sector: "Technology",
+        industry: "Consumer Electronics",
+        country: "US",
         image: "https://financialmodelingprep.com/image-stock/AAPL.png",
         website: "https://www.apple.com",
         description: "Apple Inc. designs, manufactures, and sells consumer electronics, software, and online services."
@@ -26,29 +31,86 @@ const mockProfiles = {
         symbol: "MSFT",
         companyName: "Microsoft Corporation",
         price: 420.55,
-        changes: -1.25,
-        changesPercentage: -0.3,
+        changePercentage: -0.3,
+        currency: "USD",
+        exchangeFullName: "NASDAQ Global Select",
+        exchange: "NASDAQ",
+        sector: "Technology",
+        industry: "Software - Infrastructure",
+        country: "US",
         image: "https://financialmodelingprep.com/image-stock/MSFT.png",
         website: "https://www.microsoft.com",
         description: "Microsoft Corporation develops software, cloud services, devices, and business solutions."
+    },
+    NVDA: {
+        symbol: "NVDA",
+        companyName: "NVIDIA Corporation",
+        price: 875.28,
+        changePercentage: 2.14,
+        currency: "USD",
+        exchangeFullName: "NASDAQ Global Select",
+        exchange: "NASDAQ",
+        sector: "Technology",
+        industry: "Semiconductors",
+        country: "US",
+        image: "https://financialmodelingprep.com/image-stock/NVDA.png",
+        website: "https://www.nvidia.com",
+        description: "NVIDIA Corporation designs graphics processing units, AI chips, and computing platforms."
+    },
+    AMZN: {
+        symbol: "AMZN",
+        companyName: "Amazon.com Inc.",
+        price: 182.41,
+        changePercentage: 0.85,
+        currency: "USD",
+        exchangeFullName: "NASDAQ Global Select",
+        exchange: "NASDAQ",
+        sector: "Consumer Cyclical",
+        industry: "Internet Retail",
+        country: "US",
+        image: "https://financialmodelingprep.com/image-stock/AMZN.png",
+        website: "https://www.amazon.com",
+        description: "Amazon.com Inc. operates e-commerce, cloud computing, digital streaming, and logistics businesses."
+    },
+    TSLA: {
+        symbol: "TSLA",
+        companyName: "Tesla Inc.",
+        price: 248.76,
+        changePercentage: -1.42,
+        currency: "USD",
+        exchangeFullName: "NASDAQ Global Select",
+        exchange: "NASDAQ",
+        sector: "Consumer Cyclical",
+        industry: "Auto Manufacturers",
+        country: "US",
+        image: "https://financialmodelingprep.com/image-stock/TSLA.png",
+        website: "https://www.tesla.com",
+        description: "Tesla Inc. designs and manufactures electric vehicles, energy storage systems, and solar products."
     }
 }
 
-const mockHistory = {
-    AAPL: [
-        { date: "2024-01-01", close: 185 },
-        { date: "2024-02-01", close: 188 },
-        { date: "2024-03-01", close: 192 },
-        { date: "2024-04-01", close: 189 },
-        { date: "2024-05-01", close: 196 }
-    ],
-    MSFT: [
-        { date: "2024-01-01", close: 390 },
-        { date: "2024-02-01", close: 405 },
-        { date: "2024-03-01", close: 412 },
-        { date: "2024-04-01", close: 408 },
-        { date: "2024-05-01", close: 420 }
+
+const createMockHistory = function(symbol, startPrice) {
+    return [
+        { symbol, date: "2023-08-01", close: startPrice },
+        { symbol, date: "2023-09-01", close: startPrice * 1.04 },
+        { symbol, date: "2023-10-01", close: startPrice * 0.98 },
+        { symbol, date: "2023-11-01", close: startPrice * 1.08 },
+        { symbol, date: "2023-12-01", close: startPrice * 1.12 },
+        { symbol, date: "2024-01-01", close: startPrice * 1.2 },
+        { symbol, date: "2024-02-01", close: startPrice * 1.16 },
+        { symbol, date: "2024-03-01", close: startPrice * 1.25 },
+        { symbol, date: "2024-04-01", close: startPrice * 1.31 },
+        { symbol, date: "2024-05-01", close: startPrice * 1.38 }
     ]
+}
+
+const mockHistory = {
+    AAPL: createMockHistory("AAPL", 150),
+    MSFT: createMockHistory("MSFT", 330),
+    NVDA: createMockHistory("NVDA", 500),
+    AMZN: createMockHistory("AMZN", 130),
+    TSLA: createMockHistory("TSLA", 220)
 }
 
 const searchMockCompanies = function (query) {

@@ -58,6 +58,7 @@ const StockModel = function () {
             chartData: response.data
         }
     }
+    
     const getCompanies = function () {
         return companies
     }
