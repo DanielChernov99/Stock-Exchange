@@ -1,12 +1,14 @@
 const SearchController = function (model, renderer) {
-    const handleSearch = async function () {
+    const handleSearch = async function (showEmptyStringError) {
         renderer.clearErrors()
         renderer.clearResults()
 
         const query = renderer.getInputValue()
 
-        if (!query) {
-            renderer.showError("Please enter company name or symbol")
+         if (!query) {
+            if (showEmptyStringError) {
+                renderer.showError("Please enter company name or symbol")
+            }
             return
         }
 
@@ -28,9 +30,19 @@ const SearchController = function (model, renderer) {
 
         renderer.renderCompanies(response.data)
     }
+    const debounce = function(callback,delay = 1000){
+        let timeout
+        return (...args) => {
+            clearTimeout(timeout)
+            timeout = setTimeout(()=>{
+                callback(...args)
+            },delay)
+        }
+    }
 
     const init = function () {
-        renderer.onSearch(handleSearch)
+        renderer.onSearch(() => handleSearch(true))
+        renderer.onTyping(debounce(() => handleSearch(false),700))
     }
 
     return {

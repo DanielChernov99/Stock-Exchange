@@ -62,6 +62,9 @@ const Renderer = function(){
     const onSearch = function (callback) {
         searchButton.addEventListener("click", callback)
     }
+    const onTyping = function (callback){
+        searchInput.addEventListener("input",callback)
+    }
 
     return{
         getInputValue,
@@ -71,7 +74,8 @@ const Renderer = function(){
         clearErrors,
         clearResults,
         renderCompanies,
-        onSearch
+        onSearch,
+        onTyping
     }
 }
 
