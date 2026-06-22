@@ -59,9 +59,12 @@ const CompanyView = function () {
                     label: "Stock Price History",
                     data: chartData.prices,
                     borderWidth: 2,
-                    fill: false,
+                    fill: true,
                     pointRadius: 3,
-                    lineTension: 0
+                    lineTension: 0.25,
+                    backgroundColor: "rgba(255, 43, 124, 0.9)",
+                    borderColor: "rgba(255, 43, 124, 1)",
+                    pointBackgroundColor: "rgba(255, 43, 124, 1)"
                 }]
             },
             options: {
