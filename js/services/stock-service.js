@@ -98,11 +98,36 @@ const StockService = function () {
             }
         }
     }
+    const searchCompaniesProfiles = async function(symbols) {
+        try {
+            const profileRequests = symbols.map(symbol => {
+                return searchCompanyProfile(symbol)
+            })
+
+            const profilesResponses = await Promise.all(profileRequests)
+
+            const profiles = profilesResponses
+                .filter(response => response.result)
+                .map(response => response.data)
+
+            return {
+                result: true,
+                data: profiles
+            }
+        }
+        catch(error) {
+            return {
+                result: false,
+                message: "Something went wrong while loading companies profiles"
+            }
+        }
+    }
 
     return {
         searchCompanies,
         searchCompanyProfile,
-        searchCompanyHistory
+        searchCompanyHistory,
+        searchCompaniesProfiles
     }
 }
 

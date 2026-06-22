@@ -46,6 +46,17 @@ const Renderer = function(){
             companyLink.classList.add("company-link")
             companyLink.href = `company.html?symbol=${companySymbol}`
 
+            const companyImageContainer = document.createElement("div")
+            companyImageContainer.classList.add("company-image-container")
+
+            const companyImage = document.createElement("img")
+            companyImage.classList.add("company-image")
+            companyImage.src = c.image
+            companyImage.alt = companyName
+
+            companyImageContainer.appendChild(companyImage)
+            
+
             const nameSpan = document.createElement("span")
             nameSpan.classList.add("company-name")
             nameSpan.textContent = companyName
@@ -53,8 +64,22 @@ const Renderer = function(){
             const symbolSpan = document.createElement("span")
             symbolSpan.classList.add("company-symbol")
             symbolSpan.textContent = `(${companySymbol})`
+            const changeSpan = document.createElement("span")
+            changeSpan.classList.add("company-change")
 
-            companyLink.append(nameSpan,symbolSpan)
+            const changeValue = c.changePercentage
+
+            if (changeValue !== null && changeValue !== undefined) {
+                changeSpan.textContent = `${changeValue.toFixed(2)}%`
+
+                if (changeValue >= 0) {
+                    changeSpan.classList.add("positive-change")
+                } else {
+                    changeSpan.classList.add("negative-change")
+                }
+            }
+
+            companyLink.append(companyImageContainer, nameSpan, symbolSpan, changeSpan)
             listItem.appendChild(companyLink)
             resultList.appendChild(listItem)
         }); 

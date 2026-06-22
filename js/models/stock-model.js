@@ -11,7 +11,8 @@ const StockModel = function () {
         if (!response.result) {
             return response
         }
-        companies = response.data
+
+        companies = await addProfilesToCompanies(response.data)
 
         return {
             result: true,
@@ -81,6 +82,33 @@ const StockModel = function () {
             chartData: formatCompanyHistory(response.data)
         }
     }
+    const addProfilesToCompanies = async function(companies) {
+        const symbols = companies.map(company => company.symbol)
+
+        const profilesResponse = await stockService.searchCompaniesProfiles(symbols)
+
+        if (!profilesResponse.result) {
+            return companies
+        }
+
+        const profilesBySymbol = {}
+
+        profilesResponse.data.forEach(profile => {
+            profilesBySymbol[profile.symbol] = profile
+        })
+
+        return companies.map(company => {
+            const profile = profilesBySymbol[company.symbol]
+
+            return {
+                name: company.name,
+                symbol: company.symbol,
+                image: profile ? profile.image : "",
+                changePercentage: profile ? profile.changePercentage : null
+            }
+        })
+    }
+    
     
     const getCompanies = function () {
         return companies
@@ -90,7 +118,8 @@ const StockModel = function () {
         searchCompanies,
         getCompanies,
         getCompanyProfile,
-        getCompanyHistory
+        getCompanyHistory,
+        addProfilesToCompanies
     }
 }
 
