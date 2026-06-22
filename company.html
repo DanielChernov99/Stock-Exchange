@@ -4,20 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
+    <script type="module" src="./js/controllers/company-controller.js"></script>
+
 </head>
 <body>
   <div id="compInfo"></div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="CompanyInfo.js"></script>
+  <!-- <script src="CompanyInfo.js"></script> -->
   <!-- Like before, the bellow code can be in script.js and it will import the above file -->
-  <script>
-    (async function () {
-      const params = new URLSearchParams(location.search);
-      const symbol = params.get('symbol');
-      const compInfo = new CompanyInfo(document.getElementById('compInfo'), symbol);
-      await compInfo.load();
-      await compInfo.addChart();
-    })();
-  </script>
+
 </body>
 </html>

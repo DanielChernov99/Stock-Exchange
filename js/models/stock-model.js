@@ -18,13 +18,32 @@ const StockModel = function () {
             data: companies
         }
     }
+    const getCompanyProfile = async function(symbol) {
+        const response = await stockService.searchCompanyProfile(query)
+
+        if (!response.result) {
+            return response
+        }
+        companies = response.data
+
+        return {
+            result: true,
+            data: companies
+        }
+    }
+
+    const getCompanyHistory = async function(symbol) {
+        // fetch historical price by symbol
+    }
     const getCompanies = function () {
         return companies
     }
-    
+
     return {
         searchCompanies,
-        getCompanies
+        getCompanies,
+        getCompanyProfile,
+        getCompanyHistory
     }
 }
 
