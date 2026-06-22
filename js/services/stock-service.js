@@ -32,9 +32,11 @@ const StockService = function () {
         if (USE_MOCK_API) {
             return searchMockCompanies(query)
         }
+        const cleanQuery = encodeURIComponent(query)
+
         try {
             const response = await fetch(
-                `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${API_KEY}`
+                `https://financialmodelingprep.com/stable/search-symbol?query=${cleanQuery}&apikey=${API_KEY}`               
             )
 
             if (!response.ok) {
