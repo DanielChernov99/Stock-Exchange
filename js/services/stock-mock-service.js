@@ -27,21 +27,6 @@ const mockProfiles = {
         website: "https://www.apple.com",
         description: "Apple Inc. designs, manufactures, and sells consumer electronics, software, and online services."
     },
-    MSFT: {
-        symbol: "MSFT",
-        companyName: "Microsoft Corporation",
-        price: 420.55,
-        changePercentage: -0.3,
-        currency: "USD",
-        exchangeFullName: "NASDAQ Global Select",
-        exchange: "NASDAQ",
-        sector: "Technology",
-        industry: "Software - Infrastructure",
-        country: "US",
-        image: "https://financialmodelingprep.com/image-stock/MSFT.png",
-        website: "https://www.microsoft.com",
-        description: "Microsoft Corporation develops software, cloud services, devices, and business solutions."
-    },
     NVDA: {
         symbol: "NVDA",
         companyName: "NVIDIA Corporation",

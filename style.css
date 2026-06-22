@@ -90,7 +90,7 @@ body {
 
 /* COMPANY PAGE */
 
-.company-profile {
+.company-container {
     max-width: 60rem;
     margin: 2rem auto;
     padding: 2rem;
@@ -119,4 +119,11 @@ body {
 
 .negative-change {
     color: #d50000;
+}
+
+.chart-container {
+    max-width: 45rem;
+    height: 18rem;
+    margin: 2rem auto;
+    padding: 1rem;
 }

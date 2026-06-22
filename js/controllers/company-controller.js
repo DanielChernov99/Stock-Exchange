@@ -18,7 +18,12 @@ const CompanyController = async function () {
     view.renderCompanyProfile(profileResponse.company)
 
     const historyResponse = await model.getCompanyHistory(symbol)
-    console.log("history response:", historyResponse)
+
+    if (!historyResponse.result) {
+        console.log(historyResponse.message)
+        return
+    }
+    view.renderChart(historyResponse.chartData)
 }
 
 CompanyController()

@@ -5,7 +5,7 @@ const CompanyView = function () {
         companyInfo.innerHTML = ""
 
         const container = document.createElement("div")
-        container.classList.add("company-profile")
+        container.classList.add("company-container")
 
         const image = document.createElement("img")
         image.classList.add("company-logo")
@@ -47,8 +47,44 @@ const CompanyView = function () {
         companyInfo.appendChild(container)
     }
 
+    const renderChart = function(chartData) {
+        const stockChart = document.querySelector("#stockChart")
+        const ctx = stockChart.getContext("2d")
+
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: "Stock Price History",
+                    data: chartData.prices,
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 3,
+                    lineTension: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            maxTicksLimit: 8
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                }
+            }
+        })
+    }
+
     return {
-        renderCompanyProfile
+        renderCompanyProfile,
+        renderChart
     }
 }
 

@@ -45,6 +45,29 @@ const StockModel = function () {
             }
         }
     }
+    const formatCompanyHistory = function(historyData) {
+        const historyArray = Array.isArray(historyData) ? historyData : historyData.historical
+
+        if (!historyArray || historyArray.length === 0) {
+            return {
+                labels: [],
+                prices: []
+            }
+        }
+
+        const sortedHistory = historyArray
+            .slice()
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+
+        const filteredHistory = sortedHistory.length > 100
+            ? sortedHistory.filter((day, index) => index % 30 === 0)
+            : sortedHistory
+
+        return {
+            labels: filteredHistory.map(day => day.date),
+            prices: filteredHistory.map(day => Number(day.close.toFixed(2)))
+        }
+    }
 
     const getCompanyHistory = async function(symbol) {
         const response = await stockService.searchCompanyHistory(symbol)
@@ -55,7 +78,7 @@ const StockModel = function () {
 
         return {
             result: true,
-            chartData: response.data
+            chartData: formatCompanyHistory(response.data)
         }
     }
     

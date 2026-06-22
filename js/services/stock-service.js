@@ -3,7 +3,7 @@ import {
     searchMockCompanies,
     getMockCompanyProfile,
     getMockCompanyHistory
-} from "./mock-service.js"
+} from "./stock-mock-service.js"
 
 const StockService = function () {
    
