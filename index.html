@@ -5,8 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Exchange</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="./js/main.js" defer></script>
 </head>
-<body>
-    
+<body>   
+    <main class="page-container">
+        <section class="hero-section">
+            <div>
+                <h1>Search Nasdaq Stocks</h1>
+                <p>Find and explore Nasdaq-listed companies in real time.</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <input id="searchInput" type="text" placeholder="Search company or symbol...">
+            <button id="searchButton">Search</button>
+        </section>
+
+        <p id="loading" class="hidden loading-text">Searching Nasdaq...</p>
+        <p id="errorMessage" class="hidden error-message"></p>
+
+        <section class="results-card">
+            <ul id="resultsList"></ul>
+        </section>
+    </main>
+
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>
